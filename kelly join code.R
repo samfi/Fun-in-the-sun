@@ -1,7 +1,7 @@
 library(tidyverse)
 library(lubridate)
 
-setwd("~/Documents/GitHub/oohwowsers")
+setwd("~/Documents/GitHub/fun-in-the-sun")
 
 rain <- read_csv("rain.csv")
 maxTemp <- read_csv("maxtemp.csv")
