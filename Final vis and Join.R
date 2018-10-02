@@ -12,3 +12,9 @@ fullJoin <- Aqua %>%
   full_join(Veg, by="Year") %>%
   full_join(Temp, by="Year")
   
+
+ggplot(data = fullJoin) + 
+  geom_smooth(mapping = aes(x = Year, y = tas), stat ='identity' )
+ggplot(data = fullJoin) +
+  geom_bar(mapping = aes(x = Year, y = Value.y), stat = 'identity')
+  
