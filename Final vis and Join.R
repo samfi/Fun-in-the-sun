@@ -17,8 +17,8 @@ Veg2 <- Veg2 %>%
   full_join(Temp, by="Year")
 
 ggplot(data = Veg2) + 
-  geom_smooth(mapping = aes(x = Year, y = temp), stat = 'identity')+
-  geom_bar(mapping = aes(x = Year, y = Vegetables, group = Year),stat = 'identity')
+  geom_bar(mapping = aes(x = Year, y = Vegetables), stat = 'identity')+
+  geom_smooth(mapping = aes(x = Year, y = temp),stat = 'identity')
   
 
   
