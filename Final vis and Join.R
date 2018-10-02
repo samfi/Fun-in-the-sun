@@ -6,15 +6,20 @@ setwd("~/Documents/GitHub/fun-in-the-sun")
 Temp <- read_csv("Temp.csv")
 Veg <- read_csv("vegetables.csv")
 Aqua <- read_csv("AQUA_PRODUCTION5.xls.csv")
+Veg2 <- read_csv("veg deluxe.csv")
 
 
 fullJoin <- Aqua %>% 
   full_join(Veg, by="Year") %>%
   full_join(Temp, by="Year")
   
+Veg2 <- Veg2 %>% 
+  full_join(Temp, by="Year")
 
-ggplot(data = fullJoin) + 
-  geom_smooth(mapping = aes(x = Year, y = tas), stat ='identity' )
-ggplot(data = fullJoin) +
-  geom_bar(mapping = aes(x = Year, y = Value.y), stat = 'identity')
+ggplot(data = Veg2) + 
+  geom_smooth(mapping = aes(x = Year, y = temp), stat = 'identity')+
+  geom_bar(mapping = aes(x = Year, y = Vegetables, group = Year),stat = 'identity')
   
+
+  
+options(scipen=999)
