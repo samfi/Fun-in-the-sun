@@ -7,19 +7,23 @@ Temp <- read_csv("Temp.csv")
 Veg <- read_csv("vegetables.csv")
 Aqua <- read_csv("AQUA_PRODUCTION5.xls.csv")
 Veg2 <- read_csv("veg deluxe.csv")
+Aqua2 <- read_csv("AQUA_PRODUCTION6.xls.csv")
 
 
-fullJoin <- Aqua %>% 
-  full_join(Veg, by="Year") %>%
-  full_join(Temp, by="Year")
+join <- Aqua2 %>% 
+  left_join(Veg2, by="Year") %>%
+  left_join(Temp, by="Year")
   
-Veg2 <- Veg2 %>% 
+Vegtemp <- Veg2 %>% 
   full_join(Temp, by="Year")
 
-ggplot(data = Veg2) + 
+ggplot(data = Vegtemp) + 
   geom_bar(mapping = aes(x = Year, y = Vegetables), stat = 'identity')+
-  geom_smooth(mapping = aes(x = Year, y = temp),stat = 'identity')
-  
+  geom_bar(mapping = aes(x = Year, y = temp),stat = 'identity', fill = 'blue')
 
+ggplot(data = join) + 
+  geom_bar(mapping = aes(x = Year, y = Vegetables), stat = 'identity', fill = 'green')+
+  geom_bar(mapping = aes(x = Year, y = Fish),stat = 'identity', fill = 'blue', opacity = '50')+
+  geom_smooth(mapping = aes(x = Year, y = temp),stat = 'identity', color = 'white')
   
 options(scipen=999)
